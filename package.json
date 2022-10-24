@@ -23,5 +23,6 @@
   "homepage": "https://github.com/bshinnny/API-Project#readme",
   "dependencies": {
     "pg": "^8.8.0"
-  }
+  },
+  "devDependencies": {}
 }
