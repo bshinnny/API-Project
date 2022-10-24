@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/bshinnny/API-Project/issues"
   },
-  "homepage": "https://github.com/bshinnny/API-Project#readme"
+  "homepage": "https://github.com/bshinnny/API-Project#readme",
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
 }
