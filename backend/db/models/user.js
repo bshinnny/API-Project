@@ -40,7 +40,19 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
     static associate(models) {
-      // define association here
+      User.hasMany(models.Booking, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      });
+      User.hasMany(models.Review, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      });
+      User.hasMany(models.Spot, {
+        as: 'Owner',
+        foreignKey: 'ownerId',
+        onDelete: 'CASCADE'
+      });
     }
   };
 
