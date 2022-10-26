@@ -5,7 +5,6 @@ const { handleValidationErrors } = require('../../utils/validation.js');
 
 const { requireAuth, restoreUser } = require('../../utils/auth.js');
 const { Spot, User, Review, SpotImage, ReviewImage, Sequelize } = require('../../db/models');
-const { Model } = require('sequelize');
 
 const router = express.Router();
 
@@ -88,7 +87,7 @@ router.get('/:spotId', async (req, res, next) => {
             [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']
         ]
         },
-        group: ['SpotImages.id', 'Spot.id', 'Owner.id']
+        group: ['SpotImages.id', 'Spot.id']
     });
 
     if (spot) {
@@ -113,7 +112,7 @@ router.get('/', async (_req, res, _next) => {
             [Sequelize.col('SpotImages.url'), 'previewImage']
         ]
         },
-        group: ['Spot.id', 'previewImage']
+        group: ['Spot.id']
     });
 
     return res.json({ Spots: allSpots });
@@ -192,15 +191,15 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
 
     if (spot) {
         await spot.update({
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
         });
 
         return res.json(spot);
