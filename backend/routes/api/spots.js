@@ -58,7 +58,7 @@ const validateReview = [
         .exists({ checkFalsy: true })
         .withMessage(`Review couldn't be found`)
         .isInt({ gt: 0, lt: 6 })
-        // .isFloat({ min: 1, max: 5 })
+        // .isInt({ min: 1, max: 5 })
         .withMessage(`Stars must be an integer from 1 to 5`),
     handleValidationErrors
 ];
@@ -159,7 +159,6 @@ router.get('/:spotId/reviews', async (req, res, next) => {
 
     if(spot) {
 
-        // spot = spot.toJSON();
         const spotReviews = await Review.findAll({
             where: { spotId: spot.id},
             include: [
@@ -213,21 +212,22 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res, nex
 
 // GET all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
+    // Eager Loading!
     const { user } = req;
 
     const currentUserSpots = await Spot.findAll({
         where: { ownerId: user.id },
         include: [
             { model: Review, attributes: [] },
-            { model: SpotImage, attributes: [] }
+            { model: SpotImage, where: { preview: true }, attributes: [], required: false }
         ],
         attributes: {
             include: [
-                [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgRating'],
+                [Sequelize.fn('ROUND', Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 1), 'avgRating'],
                 [Sequelize.col('SpotImages.url'), 'previewImage']
             ]
         },
-        group: ['Spot.id', 'previewImage']
+        group: ['Spot.id', 'previewImage'],
     });
 
     return res.json({ Spots: currentUserSpots });
@@ -235,6 +235,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
 // GET details for a Spot from an ID
 router.get('/:spotId', async (req, res, next) => {
+    // Eager loading!
     const { spotId } = req.params;
 
     const spot = await Spot.findByPk(spotId, {
@@ -246,10 +247,10 @@ router.get('/:spotId', async (req, res, next) => {
         attributes: {
         include: [
             [Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'],
-            [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']
+            [Sequelize.fn('ROUND', Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 1), 'avgStarRating'],
         ]
         },
-        group: ['Spot.id', 'SpotImages.id', 'Owner.id']
+        group: ['Spot.id', 'SpotImages.id', 'Owner.id'],
     });
 
     if (spot) {
@@ -262,22 +263,94 @@ router.get('/:spotId', async (req, res, next) => {
 });
 
 // GET all Spots.
-router.get('/', async (_req, res, _next) => {
+router.get('/', async (req, res, next) => {
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    const err = {
+        title: "Validation Error",
+        message: "Validation Error",
+        status: 400,
+        errors: {}
+    }
+
+    size = parseInt(size);
+    page = parseInt(page);
+
+    if (!size) size = 20;
+    if (!page) page = 1;
+
+    if(size >= 1 && size <= 20) size = size;
+    if (size < 1) err.errors.size = `Page must be greater than or equal to 1`;
+    if(page >= 1 && page <= 10) page = page;
+    if (page < 1) err.errors.page = `Size must be greater than or equal to 1`;
+
+    const offset = size * (page - 1);
+    const limit = size;
+
+    // pagination.limit = size;
+    // pagination.offset = size * (page - 1);
+
+    minLat = parseFloat(minLat);
+    maxLat = parseFloat(maxLat);
+    minLng = parseFloat(minLng);
+    maxLng = parseFloat(maxLng);
+    minPrice = parseFloat(minPrice);
+    maxPrice = parseFloat(maxPrice);
+
+    const where = {};
+    if(minLat) {
+        if (minLat > -90) where.lat = {[Op.gte]: minLat};
+        else err.errors.minLat = `Minimum latitude is invalid`
+    }
+    if(maxLat) {
+        if (maxLat < 90) where.lat = {[Op.lte]: maxLat};
+        else err.errors.maxLat = `Maximum latitude is invalid`
+    }
+    if(minLng) {
+        if (minLng < -90) where.lng = {[Op.gte]: minLng};
+        else err.errors.minLng = `Minimum longitude is invalid`
+    }
+    if(maxLng) {
+        if (maxLng < -90) where.lng = {[Op.lte]: maxLng};
+        else err.errors.maxLng = `Maximum longitude is invalid`
+    }
+    if(minPrice) {
+        if (minPrice > 0) where.price = {[Op.gte]: minPrice};
+        else err.errors.minPrice = `Minimum price must be greater than or equal to 0`
+    }
+    if(maxPrice) {
+        if (maxPrice > 0) where.price = {[Op.lte]: maxPrice};
+        else err.errors.maxPrice = `Maximum price must be greater than or equal to 0`
+    }
+
+    if( err.errors.size || err.errors.page || err.errors.minLat || err.errors.maxLat || err.errors.minLng || err.errors.maxLng || err.errors.minPrice || err.errors.maxPrice ) {
+        return next(err);
+    }
+
+    // Eager Loading
     const allSpots = await Spot.findAll({
+        where,
         include: [
-        { model: Review, attributes: [] },
-        { model: SpotImage, where: { preview: true }, attributes: [] }
+            { model: Review, attributes: [] , required: false },
+            { model: SpotImage, where: { preview: true }, attributes: [], required: false }
         ],
         attributes: {
-        include: [
-            [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgRating'],
-            [Sequelize.col('SpotImages.url'), 'previewImage']
-        ]
+            include: [
+                [Sequelize.fn('ROUND', Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 1), 'avgRating'],
+                [Sequelize.col('SpotImages.url'), 'previewImage']
+            ]
         },
-        group: ['Spot.id', 'SpotImages.url']
+        group: ['Spot.id', 'SpotImages.url'],
+        // ...pagination
+        limit,
+        offset,
+        subQuery: false
     });
 
-    return res.json({ Spots: allSpots });
+    return res.json({
+        Spots: allSpots,
+        page,
+        size,
+    });
 });
 
 // Add an Image to a Spot based on the Spot's ID
