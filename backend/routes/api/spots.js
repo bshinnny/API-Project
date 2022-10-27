@@ -145,8 +145,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         // startDate & endDate is coming up as null?
         return res.json(newBooking)
     } else {
-        const err = Error(`Forbidden: You can't book your own spot.`);
-        err.status = 403
+        const err = Error(`Spot couldn't be found`);
+        err.status = 404
         return next(err);
     }
 });

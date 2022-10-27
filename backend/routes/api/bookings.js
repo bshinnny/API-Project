@@ -121,6 +121,13 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
     const { user } = req;
 
     const booking = await Booking.findByPk(bookingId);
+
+    if(!booking) {
+        const err = new Error("Booking couldn't be found");
+        err.status = 404;
+        return next(err);
+    }
+
     if(booking && parseInt(booking.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
@@ -131,13 +138,10 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
         err.status = 403;
         return next(err);
     }
+
     if(booking) {
         await booking.destroy();
         return res.json({ message: 'Successfully deleted', statusCode: 200 });
-    } else {
-        const err = new Error("Booking couldn't be found");
-        err.status = 404;
-        return next(err);
     }
 });
 
