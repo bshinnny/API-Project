@@ -22,7 +22,7 @@ module.exports = {
       {
         spotId: 3,
         url: 'https://www.google.com/images/1',
-        preview: true
+        preview: false
       },
       {
         spotId: 4,
