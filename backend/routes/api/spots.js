@@ -83,7 +83,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     }else{
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 });
 
@@ -97,7 +97,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res, nex
     if (!spot) {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 
     const reviews = await spot.getReviews({
@@ -107,7 +107,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res, nex
     if(reviews.length > 0) {
         const err = new Error(`User already has a review for this spot`);
         err.status = 403;
-        next(err);
+        return next(err);
     }
 
     const newReview = await Review.create({
@@ -166,7 +166,7 @@ router.get('/:spotId', async (req, res, next) => {
     } else {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 });
 
@@ -200,7 +200,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     if (spot && parseInt(spot.ownerId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
-        next(err);
+        return next(err);
       }
 
     if (spot) {
@@ -218,7 +218,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     } else {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 });
 
@@ -241,7 +241,9 @@ router.post('/', validateSpot, requireAuth, async (req, res, _next) => {
         price
     });
 
-    res.status(201).json(newSpot);
+    return res
+        .status(201)
+        .json(newSpot);
 });
 
 // Edit a Spot
@@ -255,7 +257,7 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
     if (spot && parseInt(spot.ownerId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
-        next(err);
+        return next(err);
     }
 
     if (spot) {
@@ -275,7 +277,7 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
     } else {
         const err = new Error(`Spot couldn't be found`);
         err.status = 404;
-        next(err);
+        return next(err);
     }
 });
 
@@ -289,8 +291,8 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     if (spot && parseInt(spot.ownerId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
-        next(err);
-      }
+        return next(err);
+    }
 
     if (spot) {
         spot.destroy();
@@ -298,7 +300,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     } else {
         const err = new Error("Spot couldn't be found");
         err.status = 404;
-        next(err);
+        return next(err);
     }
 });
 
