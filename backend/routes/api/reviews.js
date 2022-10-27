@@ -76,6 +76,11 @@ router.post('/:reviewId/images', requireAuth, imageMax, async(req, res, next) =>
     const { user } = req;
 
     const review = await Review.findByPk(reviewId);
+
+    // GO BACK AND CHECK CREATE AN IMAGE FOR A REVIEW.
+    // Needed to make reviewId into an integer?
+    // reviewId = parseInt(reviewId);
+
     if (review && parseInt(review.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
@@ -133,6 +138,6 @@ router.delete('/:reviewId', validateReview, requireAuth, async(req, res, next) =
         err.status = 404;
         return next(err);
     }
-})
+});
 
 module.exports = router;
