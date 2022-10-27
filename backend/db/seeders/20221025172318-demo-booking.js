@@ -7,26 +7,26 @@ module.exports = {
       {
         spotId: 1,
         userId: 2,
-        startDate: '2022-11-1',
-        endDate: '2022-11-3'
+        startDate: '2022-11-11',
+        endDate: '2022-11-12'
       },
       {
         spotId: 2,
         userId: 1,
-        startDate: '2022-11-6',
-        endDate: '2022-11-8'
+        startDate: '2022-11-16',
+        endDate: '2022-11-18'
       },
       {
         spotId: 3,
         userId: 3,
-        startDate: '2022-11-1',
+        startDate: '2022-11-10',
         endDate: '2022-11-30'
       },
       {
         spotId: 4,
         userId: 1,
         startDate: '2022-12-25',
-        endDate: '2022-11-3'
+        endDate: '2022-12-26'
       },
     ], {});
   },

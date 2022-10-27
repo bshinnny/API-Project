@@ -124,7 +124,7 @@ router.delete('/:reviewId', validateReview, requireAuth, async(req, res, next) =
     const { reviewId } = req.params;
     const { user } = req;
 
-    const review = await Review.findByOk(reviewId);
+    const review = await Review.findByPk(reviewId);
     if(review && parseInt(review.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
