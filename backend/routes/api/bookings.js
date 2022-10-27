@@ -32,8 +32,11 @@ router.get('/current', requireAuth, async(req, res, next) => {
                 preview: true
             }
         })
-
-        currentUserBookings[i].Spot.previewImage = previewImg.url;
+        if(previewImg) {
+            currentUserBookings[i].Spot.previewImage = previewImg.url;
+        } else {
+            currentUserBookings[i].Spot.previewImage = null;
+        }
     }
     // startDate & endDate is coming up as null?
     return res.json({ Bookings: currentUserBookings });
@@ -129,7 +132,7 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
         return next(err);
     }
     if(booking) {
-        booking.destroy();
+        await booking.destroy();
         return res.json({ message: 'Successfully deleted', statusCode: 200 });
     } else {
         const err = new Error("Booking couldn't be found");

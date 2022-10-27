@@ -48,7 +48,11 @@ router.get('/current', requireAuth, async(req, res) => {
             }
         })
 
-        currentUserReviews[i].Spot.previewImage = previewImg.url;
+        if(previewImg) {
+            currentUserReviews[i].Spot.previewImage = previewImg.url;
+        } else {
+            currentUserReviews[i].Spot.previewImage = null;
+        }
     }
     return res.json({ Reviews: currentUserReviews })
 });
@@ -131,7 +135,7 @@ router.delete('/:reviewId', validateReview, requireAuth, async(req, res, next) =
         return next(err);
     }
     if(review) {
-        review.destroy();
+        await review.destroy();
         return res.json({ message: 'Successfully deleted', statusCode: 200 });
     } else {
         const err = new Error("Review couldn't be found");
