@@ -158,7 +158,7 @@ router.get('/:spotId', async (req, res, next) => {
             [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']
         ]
         },
-        group: ['Spot.id', 'SpotImages.id']
+        group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
 
     if (spot) {
