@@ -128,8 +128,7 @@ router.delete('/:reviewId', validateReview, requireAuth, async(req, res, next) =
     if(review) {
         review.destroy();
         return res.json({ message: 'Successfully deleted', statusCode: 200 });
-    }
-    if(!review) {
+    } else {
         const err = new Error("Review couldn't be found");
         err.status = 404;
         return next(err);
