@@ -275,13 +275,14 @@ router.get('/', async (req, res, next) => {
     size = parseInt(size);
     page = parseInt(page);
 
-    if (!size) size = 20;
-    if (!page) page = 1;
 
     if(size >= 1 && size <= 20) size = size;
-    if (size < 1) err.errors.size = `Page must be greater than or equal to 1`;
+    if (size <= 0) err.errors.size = `Size must be greater than or equal to 1`;
     if(page >= 1 && page <= 10) page = page;
-    if (page < 1) err.errors.page = `Size must be greater than or equal to 1`;
+    if (page <= 0) err.errors.page = `Page must be greater than or equal to 1`;
+
+    if (!size) size = 20;
+    if (!page) page = 1;
 
     const offset = size * (page - 1);
     const limit = size;
