@@ -85,6 +85,12 @@ router.post('/:reviewId/images', requireAuth, imageMax, async(req, res, next) =>
     // Needed to make reviewId into an integer?
     // reviewId = parseInt(reviewId);
 
+    if(!review) {
+        const err = new Error(`Review couldn't be found`);
+        err.status = 404;
+        return next(err);
+    }
+
     if (review && parseInt(review.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
