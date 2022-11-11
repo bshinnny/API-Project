@@ -26,9 +26,9 @@ export const login = (payload) => async dispatch => {
     })
 
     if (response.ok) {
-        const session = await response.json();
-        dispatch(setUser(session.user));
-        return session;
+        const data = await response.json();
+        dispatch(setUser(data.user));
+        return response;
     }
 }
 
