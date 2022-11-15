@@ -40,8 +40,13 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <NavLink className='create-spot-link' to={'spots/new'}>
+            <NavLink className='create-spot-link' to={'/spots/new'}>
               Become a Host!
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className='user-spots' to={'/spots/current'}>
+              User Spots!
             </NavLink>
           </li>
           <li>

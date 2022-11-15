@@ -2,24 +2,26 @@ import React from 'react';
 import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import './Spots.css';
+import { NavLink, Redirect } from 'react-router-dom';
 
-function AllSpots() {
+function CurrentUserSpots() {
     const dispatch = useDispatch();
-    const spots = useSelector(state => state.spots.allSpots);
+    const spots = useSelector(state => state.spots.userSpots);
+    const user = useSelector(state => state.session.user);
     // console.log(spots)
 
     useEffect(() => {
-        dispatch(spotsActions.getAllSpotsThunk())
+        dispatch(spotsActions.getUserSpotsThunk())
     }, [dispatch])
 
-    if (!spots) return null;
+    if (!user) return <Redirect to="/" />;
+
+    if (!spots) return <h1>User has no spots.</h1>;
 
     return (
         <div>
-            <ul className='all-spots'>
-                {Object.values(spots).map((spot) => {
+            <ul className='user-spots'>
+            {Object.values(spots).map((spot) => {
                     return (
                         <NavLink className='spot-link' to={`/spots/${spot.id}`} key={spot.id}>
                             <div className='spot'>
@@ -37,4 +39,4 @@ function AllSpots() {
     )
 }
 
-export default AllSpots;
+export default CurrentUserSpots;
