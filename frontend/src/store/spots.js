@@ -166,11 +166,13 @@ export default function spotsReducer(state = {}, action) {
             return newState;
         case DELETE_A_SPOT:
             // console.log('In the reducer.')
-            newState = {...state, userSpots: {...state.userSpots}}
+            newState = {...state, userSpots: {...state.userSpots}};
             delete newState.userSpots[action.spotId];
             return newState;
-        // case EDIT_A_SPOT:
-
+        case EDIT_A_SPOT:
+            newState = {...state, userSpots: {...state.userSpots}};
+            newState.userSpots[action.spot.id] = action.spot;
+            return newState;
         default:
             return state;
     }

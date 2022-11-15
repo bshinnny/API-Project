@@ -2,14 +2,21 @@ import React from 'react';
 // import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './CurrentUserSpot.css';
 
 function CurrentUserSpot({ spot }) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const dispatchDelete = () => {
+    const dispatchDelete = (e) => {
+        e.preventDefault();
         dispatch(spotsActions.deleteASpotThunk(spot.id));
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        history.push(`/spots/${spot.id}/edit`)
     }
 
     return (
@@ -23,7 +30,8 @@ function CurrentUserSpot({ spot }) {
                     <p>${spot.price} a night.</p>
                 </div>
             </NavLink>
-            <button onClick={dispatchDelete}>Delete Spot</button>
+            <button onClick={dispatchDelete}>Delete <i class="fa-solid fa-trash"></i></button>
+            <button onClick={handleClick}>Edit <i class="fa-solid fa-pen-to-square"></i></button>
         </div>
 
     )
