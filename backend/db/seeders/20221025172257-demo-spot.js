@@ -26,7 +26,7 @@ module.exports = {
         lng: -73.138260,
         name: 'New York Apartment',
         description: 'Apartment near Manhattan.',
-        price: 2500.50
+        price: 2500.00
       },
       {
         ownerId: 2,
@@ -38,7 +38,7 @@ module.exports = {
         lng: -74.138260,
         name: 'Upper East Side Apartment',
         description: 'Apartment near Central Park.',
-        price: 2500.50
+        price: 2500.00
       },
       {
         ownerId: 3,

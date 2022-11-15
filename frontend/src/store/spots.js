@@ -43,20 +43,38 @@ export const getSpotDetailsThunk = (spotId) => async dispatch => {
     if (response.ok) {
         const spot = await response.json();
         dispatch(getSpotDetails(spot))
+        return response;
     }
 }
 
-// export const createASpotThunk = (spot) => aysnc dispatch => {
-//     const response = await csrfFetch(`api/spots`, {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify(spot)
-//     })
+export const createASpotThunk = (spot) => async dispatch => {
+    const { url, ...newSpot } = spot;
 
-//     if (response.ok) {
-//         // IN PROGRESS
-//     }
-// }
+    const response = await csrfFetch(`/api/spots`, {
+        method: 'POST',
+        // headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newSpot)
+    })
+
+    if (response.ok) {
+        const spot = await response.json();
+        const image = await csrfFetch(`/api/spots/${spot.id}/images`, {
+            method: 'POST',
+            // headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                url: url,
+                preview: true
+            })
+        })
+        if (image.ok) {
+            spot.previewImage = url;
+        } else {
+            spot.previewImage = null;
+        }
+        dispatch(createASpot(spot))
+        return spot;
+    }
+}
 
 // Format initial data.
 const formatData = (array) => {
@@ -79,6 +97,9 @@ export default function spotsReducer(state = {}, action) {
             return newState;
         case GET_SPOT_DETAILS:
             newState['spotDetails'] = action.spot;
+            return newState;
+        case CREATE_A_SPOT:
+            newState['newSpot'] = action.spot;
             return newState;
         default:
             return state;

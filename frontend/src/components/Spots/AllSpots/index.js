@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import './Spots.css';
 
 function AllSpots() {
     const dispatch = useDispatch();
@@ -17,15 +18,15 @@ function AllSpots() {
 
     return (
         <div>
-            <ul>
+            <ul className='all-spots'>
                 {Object.values(spots).map((spot) => {
                     return (
-                        <NavLink to={`spots/${spot.id}`}>
+                        <NavLink className='spot-link' to={`spots/${spot.id}`} key={spot.id}>
                             <div className='spot'>
-                                <h1 key={spot.id}>{spot.name}</h1>
-                                <img src={spot.previewImage} alt={spot.name}></img>
-                                <p>Average Rating: {spot.avgRating} ★</p>
-                                <p>{spot.description}</p>
+                                <img src={spot.previewImage} alt={spot.name} className='spot-image'></img>
+                                <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
+                                <p className='spot-rating'>Average Rating: {spot.avgRating} ★</p>
+                                <p className='spot-description'>{spot.description}</p>
                                 <p>${spot.price} a night.</p>
                             </div>
                         </NavLink>
