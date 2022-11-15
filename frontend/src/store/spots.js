@@ -4,6 +4,8 @@ const GET_ALL_SPOTS = 'spots/GET_ALL_SPOTS';
 const GET_SPOT_DETAILS = 'spots/GET_SPOT_DETAILS';
 const CREATE_A_SPOT = 'spots/CREATE_A_SPOT';
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS';
+const DELETE_A_SPOT = 'spots/DELETE_A_SPOT';
+const EDIT_A_SPOT = 'spots/EDIT_A_SPOT';
 
 // ACTIONS
 export const getAllSpots = (spots) => {
@@ -31,6 +33,20 @@ export const getUserSpots = (spots) => {
     return {
         type: GET_USER_SPOTS,
         spots
+    }
+}
+
+export const deleteASpot = (spotId) => {
+    return {
+        type: DELETE_A_SPOT,
+        spotId
+    }
+}
+
+export const editASpot = (spot) => {
+    return {
+        type: EDIT_A_SPOT,
+        spot
     }
 }
 
@@ -94,6 +110,30 @@ export const getUserSpotsThunk = () => async dispatch => {
     }
 }
 
+export const deleteASpotThunk = (spotId) => async dispatch => {
+    console.log('Deleted spot ID from component:', spotId)
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        console.log('Deleted spot from database.')
+        dispatch(deleteASpot(spotId))
+    }
+}
+
+export const editASpotThunk = (spot, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        body: JSON.stringify(spot)
+    })
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(editASpot(spot))
+    }
+}
+
 // Format initial data.
 const formatData = (array) => {
     const object = {};
@@ -105,7 +145,7 @@ const formatData = (array) => {
 
 // REDUCER
 export default function spotsReducer(state = {}, action) {
-    const newState = { ...state }
+    let newState = { ...state }
     switch (action.type) {
         case GET_ALL_SPOTS:
             // console.log(action.spots)
@@ -124,6 +164,13 @@ export default function spotsReducer(state = {}, action) {
             const userSpotsObj = formatData(userSpotsArr);
             newState['userSpots'] = userSpotsObj;
             return newState;
+        case DELETE_A_SPOT:
+            // console.log('In the reducer.')
+            newState = {...state, userSpots: {...state.userSpots}}
+            delete newState.userSpots[action.spotId];
+            return newState;
+        // case EDIT_A_SPOT:
+
         default:
             return state;
     }

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import './Spots.css';
+import './AllSpots.css';
 
 function AllSpots() {
     const dispatch = useDispatch();
