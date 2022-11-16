@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './CurrentUserSpots.css';
 import CurrentUserSpot from '../CurrentUserSpot';
+import './CurrentUserSpots.css'
 
 function CurrentUserSpots() {
     const dispatch = useDispatch();

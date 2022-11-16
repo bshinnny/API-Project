@@ -3,3 +3,39 @@
     flex-wrap: wrap;
     flex-direction: row;
 }
+
+.spot-card {
+    padding: 10px;
+    margin: 10px;
+}
+
+.spot-link {
+    text-decoration: none;
+    color: black;
+    width: 270px;
+    padding: 10px;
+    margin: 10px;
+    grid-template-areas:
+    "image",
+    "title",
+    "price",
+}
+
+.spot-image {
+    height: 250px;
+    width: 250px;
+    border-radius: 15px;
+    grid-area: "image";
+}
+
+.spot-title {
+    grid-area: "title";
+}
+
+.spot-rating {
+    grid-area: "rating";
+}
+
+.spot-description {
+    grid-area: "price";
+}

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
+import './SpotDetails.css'
 
 function SpotDetails() {
     const dispatch = useDispatch()

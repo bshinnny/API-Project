@@ -1,13 +1,14 @@
 import React from 'react';
 // import { useEffect } from 'react';
 import * as spotsActions from '../../../store/spots';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import './CurrentUserSpot.css';
 
 function CurrentUserSpot({ spot }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const spots = useSelector(state => state.spots.userSpots)
 
     const dispatchDelete = (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ function CurrentUserSpot({ spot }) {
     }
 
     return (
-        <div>
+        <div className='spot-card'>
             <NavLink className='spot-link' to={`/spots/${spot.id}`} key={spot.id}>
                 <div className='spot'>
                     <img src={spot.previewImage} alt={spot.name} className='spot-image'></img>
