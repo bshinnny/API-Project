@@ -123,14 +123,24 @@ export const deleteASpotThunk = (spotId) => async dispatch => {
 }
 
 export const editASpotThunk = (spot, spotId) => async dispatch => {
+    const { url, ...editedSpot } = spot;
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
-        body: JSON.stringify(spot)
+        body: JSON.stringify(editedSpot)
     })
 
     if (response.ok) {
         const spot = await response.json();
+        await csrfFetch(`/api/spots/${spot.id}/images`, {
+            method: 'POST',
+            // headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                url: url,
+                preview: false
+            })
+        })
         dispatch(editASpot(spot))
+        return spot;
     }
 }
 

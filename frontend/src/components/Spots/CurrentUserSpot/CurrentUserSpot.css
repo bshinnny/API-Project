@@ -1,0 +1,40 @@
+.user-spot-card {
+    width: 270px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.user-spot-link {
+    text-decoration: none;
+    color: black;
+}
+
+.spot {
+    width: 270px;
+    padding: 10px;
+    margin: 10px;
+    grid-template-areas:
+    "image",
+    "rating",
+    "title",
+    "price",
+}
+
+.spot-image {
+    height: 250px;
+    width: 250px;
+    border-radius: 15px;
+    grid-area: "image";
+}
+
+.spot-rating {
+    grid-area: "rating";
+}
+
+.spot-title {
+    grid-area: "title";
+}
+
+.spot-description {
+    grid-area: "price";
+}

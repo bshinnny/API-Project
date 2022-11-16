@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: 'https://www.google.com/images/1',
+        url: 'https://a0.muscache.com/im/pictures/fac37544-a06c-4bba-a1f0-7d97a84cb281.jpg?im_w=720',
         preview: false
       },
       {

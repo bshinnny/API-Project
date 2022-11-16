@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as spotsActions from '../../../store/spots';
@@ -30,6 +30,20 @@ function EditSpotForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const errors = [];
+
+        if (name.length > 49) errors.push('Name must be less than 50 characters.');
+        if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
+        if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
+        if (price <= 0) errors.push('Price cannot be $0 or less.');
+
+        setErrors(errors);
+
+        if(errors.length){
+            return;
+        }
+
         const editedSpot = {
             address,
             city,
@@ -40,8 +54,9 @@ function EditSpotForm() {
             name,
             description,
             price,
-            //url,
+            url,
         };
+
         return dispatch(spotsActions.editASpotThunk(editedSpot, spotId))
             .then((spot) => {
                 setAddress('')
@@ -53,14 +68,18 @@ function EditSpotForm() {
                 setName('')
                 setDescription('')
                 setPrice('')
-                // setUrl('')
-                history.push(`/spots/${spot.id}`);
+                setUrl('')
+                history.push(`/spots/current`);
             })
       };
 
     return (
         <div>
+            <h1>Edit Your Spot</h1>
             <form onSubmit={handleSubmit}>
+                <ul className="errors">
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <label>Address:
                     <input
                         type="text"
@@ -79,7 +98,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> State:
                     <input
                         type="text"
                         value={state}
@@ -88,7 +107,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Country:
                     <input
                         type="text"
                         value={country}
@@ -97,7 +116,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Latitude:
                     <input
                         type="number"
                         value={lat}
@@ -106,7 +125,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Longitude:
                     <input
                         type="number"
                         value={lng}
@@ -115,7 +134,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Name:
                     <input
                         type="text"
                         value={name}
@@ -124,7 +143,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Description:
                     <input
                         type="text"
                         value={description}
@@ -133,7 +152,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Price ($):
                     <input
                         type="number"
                         value={price}
@@ -142,7 +161,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label>
+                <label> Add additional spot images:
                     <input
                         type="text"
                         value={url}

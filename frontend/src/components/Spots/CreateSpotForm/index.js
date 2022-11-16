@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as spotsActions from '../../../store/spots';
@@ -26,6 +26,20 @@ function CreateSpotForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const errors = [];
+
+        if (name.length > 49) errors.push('Name must be less than 50 characters.');
+        if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
+        if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
+        if (price <= 0) errors.push('Price cannot be $0 or less.');
+
+        setErrors(errors);
+
+        if(errors.length){
+            return;
+        }
+
         const newSpot = {
             address,
             city,
@@ -56,7 +70,11 @@ function CreateSpotForm() {
 
     return (
         <div>
+            <h1>Create New Spot</h1>
             <form onSubmit={handleSubmit}>
+                <ul className="errors">
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <label>
                     <input
                         type="text"

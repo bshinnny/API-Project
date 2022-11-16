@@ -7,13 +7,18 @@
 .spot-link {
     text-decoration: none;
     color: black;
+}
+
+.spot {
+    /* display: grid; */
     width: 270px;
     padding: 10px;
     margin: 10px;
     grid-template-areas:
-    "image", "image", "image"
-    "title", "title", "rating"
-    "price", "x", "x";
+    "image"
+    "rating"
+    "title",
+    "price",
 }
 
 .spot-image {
@@ -23,14 +28,14 @@
     grid-area: "image";
 }
 
-.spot-title {
-    grid-area: "title";
-}
-
 .spot-rating {
     grid-area: "rating";
 }
 
+.spot-title {
+    grid-area: "title";
+}
+
 .spot-description {
-    grid-area: "price";
+    grid-area: "title";
 }

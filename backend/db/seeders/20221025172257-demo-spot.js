@@ -7,13 +7,13 @@ module.exports = {
       {
         ownerId: 1,
         address: '11111 Stone Bridge Lane',
-        city: 'Los Angeles',
+        city: 'Malibu',
         state: 'California',
         country: 'United States',
         lat: 40.792240,
         lng: -118.2436849,
-        name: 'Hollywood House',
-        description: 'House near Hollywood.',
+        name: 'Malibu Beach House',
+        description: 'Mansion near Malibu Beach.',
         price: 100.00
       },
       {
@@ -48,8 +48,8 @@ module.exports = {
         country: 'United States',
         lat: 41.792240,
         lng: -119.2436849,
-        name: 'LA Suburb House',
-        description: 'Mansion in the suburbs.',
+        name: 'Santa Monica Beach Getaway',
+        description: 'Beautiful beachfront property near Santa Monica.',
         price: 25000.99
       },
 
