@@ -1,18 +1,25 @@
 import React from 'react';
 import { useEffect } from 'react';
-import * as spotsActions from '../../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import './SpotDetails.css'
+import * as spotsActions from '../../../store/spots';
+import * as reviewsActions from '../../../store/reviews';
+import SpotReview from '../../Reviews/SpotReview';
+import './SpotDetails.css';
 
 function SpotDetails() {
     const dispatch = useDispatch()
     const { spotId } = useParams();
 
     const spot = useSelector(state => state.spots.spotDetails);
+    const reviews = useSelector(state => state.reviews.spotReviews)
 
     useEffect(() => {
         dispatch(spotsActions.getSpotDetailsThunk(spotId))
+    }, [dispatch, spotId])
+
+    useEffect(() => {
+        dispatch(reviewsActions.getSpotReviewsThunk(spotId))
     }, [dispatch, spotId])
 
     if (!spot) return null;
@@ -43,6 +50,13 @@ function SpotDetails() {
                         {spot.SpotImages[4] ? (<img className='bottom-right-image' alt={`spotImg-${spot.SpotImages[4].id}`} src={spot.SpotImages[4].url}></img>) : <p>No Image Available</p>}
                     </div>
                 </div>
+            </div>
+            <div className='spot-details-reviews'>
+                {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (
+                    <SpotReview key={`review-${review.id}`}review={review} />
+                )) :
+                <h1>Spot doesn't have any reviews.</h1>
+                }
             </div>
         </div>
     )

@@ -25,9 +25,27 @@ module.exports = {
       {
         spotId: 4,
         userId: 1,
-        review: 'Nice house but not nicer than mine',
+        review: 'Nice house but not nicer than mine.',
         stars: 4
-      }
+      },
+      {
+        spotId: 1,
+        userId: 2,
+        review: 'Great house.',
+        stars: 5
+      },
+      {
+        spotId: 1,
+        userId: 3,
+        review: 'Great house.',
+        stars: 5
+      },
+      {
+        spotId: 2,
+        userId: 2,
+        review: 'Great house.',
+        stars: 5
+      },
     ], {});
   },
 
