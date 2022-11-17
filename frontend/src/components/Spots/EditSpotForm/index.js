@@ -13,6 +13,7 @@ function EditSpotForm() {
     const spots = useSelector(state => state.spots.userSpots);
     const spot = spots[spotId];
 
+
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
     const [state, setState] = useState(spot.state);
@@ -27,6 +28,7 @@ function EditSpotForm() {
 
     const user = useSelector(state => state.session.user);
     if (!user) return <Redirect to="/" />;
+    if(!spot) return <Redirect to={`/spots/${spotId}/edit`} />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
