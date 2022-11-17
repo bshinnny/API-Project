@@ -1,0 +1,11 @@
+.profile-button {
+    padding: 5px;
+    border: solid 1px gray;
+    border-radius: 25px;
+    background-color: transparent;
+    color: gray;
+}
+
+.fa-solid {
+    padding: 10px 5px;
+}

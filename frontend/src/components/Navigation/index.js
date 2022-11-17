@@ -9,6 +9,7 @@ import ProfileButton from './ProfileButton';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormModal/SignupForm';
 import { Modal } from '../../context/Modal';
+import AirbnbLogo from "../../images/clipart2562521.png"
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -31,9 +32,11 @@ function Navigation({ isLoaded }){
     // }
 
     return (
-        <ul>
+        <ul className='navigation-header'>
             <li>
-                <NavLink exact to="/">Home</NavLink>
+                <NavLink exact to="/">
+                    <img className='logo' alt='airbnb-logo' src={AirbnbLogo}></img>
+                </NavLink>
                 {isLoaded && (
                     <ProfileButton
                         user={sessionUser}
