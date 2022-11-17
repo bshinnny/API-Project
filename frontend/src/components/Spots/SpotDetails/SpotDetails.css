@@ -12,6 +12,7 @@
     overflow: hidden;
     height: 50vh;
     width: 90vw;
+    border-radius: 15px;
 }
 
 .small-images-div {
@@ -23,24 +24,23 @@
     "bl br";
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    padding: 10px;
 }
 
 .preview-image-div {
+    display: flex;
     height: 100%;
     width: 50%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    padding: 10px;
 }
 
 .preview-image {
     object-fit: contain;
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
+    width: fit-content;
+    height: fit-content;
 }
 
 .top-left{
@@ -48,48 +48,59 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .top-right {
-    /* display: grid; */
     grid-area: tr;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    border-top-right-radius: 15px;
 }
 
 .bottom-left {
-    /* display: grid; */
     grid-area: bl;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .bottom-right {
-    /* display: grid; */
     grid-area: br;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    border-bottom-right-radius: 15px;
 }
 
 .top-left-image {
     object-fit: contain;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .top-right-image {
     object-fit: contain;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .bottom-left-image {
     object-fit: contain;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .bottom-right-image {
     object-fit: contain;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
 }

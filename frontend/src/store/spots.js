@@ -111,13 +111,13 @@ export const getUserSpotsThunk = () => async dispatch => {
 }
 
 export const deleteASpotThunk = (spotId) => async dispatch => {
-    console.log('Deleted spot ID from component:', spotId)
+    // console.log('Deleted spot ID from component:', spotId)
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
 
     if (response.ok) {
-        console.log('Deleted spot from database.')
+        // console.log('Deleted spot from database.')
         dispatch(deleteASpot(spotId))
     }
 }

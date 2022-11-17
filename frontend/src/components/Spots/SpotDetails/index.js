@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import * as spotsActions from '../../../store/spots';
 import * as reviewsActions from '../../../store/reviews';
 import SpotReview from '../../Reviews/SpotReview';
@@ -12,7 +12,7 @@ function SpotDetails() {
     const { spotId } = useParams();
 
     const spot = useSelector(state => state.spots.spotDetails);
-    const reviews = useSelector(state => state.reviews.spotReviews)
+    const reviews = useSelector(state => state.reviews.spotReviews);
 
     useEffect(() => {
         dispatch(spotsActions.getSpotDetailsThunk(spotId))
@@ -52,12 +52,14 @@ function SpotDetails() {
                 </div>
             </div>
             <div className='spot-details-reviews'>
+                <h2>Reviews</h2>
                 {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (
-                    <SpotReview key={`review-${review.id}`}review={review} />
+                    <SpotReview key={`review-${review.id}`} review={review} />
                 )) :
-                <h1>Spot doesn't have any reviews.</h1>
+                <h2>Spot doesn't have any reviews.</h2>
                 }
             </div>
+            <NavLink to={`/spots/${spotId}/reviews/new`}>Create A Review</NavLink>
         </div>
     )
 }

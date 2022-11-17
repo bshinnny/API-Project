@@ -20,7 +20,7 @@ export const removeUser = () => {
 // THUNKS
 // Login
 export const login = (payload) => async dispatch => {
-    const response = await csrfFetch('api/session', {
+    const response = await csrfFetch('/api/session', {
         method: 'POST',
         // headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

@@ -8,6 +8,7 @@ import SpotDetails from "./components/Spots/SpotDetails";
 import CreateSpotForm from "./components/Spots/CreateSpotForm";
 import CurrentUserSpots from "./components/Spots/CurrentUserSpots";
 import EditSpotForm from "./components/Spots/EditSpotForm";
+import CreateSpotReviewForm from "./components/Reviews/CreateSpotReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route exact path='/spots/:spotId'>
           <SpotDetails />
+        </Route>
+        <Route exact path='/spots/:spotId/reviews/new'>
+          <CreateSpotReviewForm />
         </Route>
       </Switch>
     </>
