@@ -139,7 +139,7 @@ export const editASpotThunk = (spot, spotId) => async dispatch => {
                 preview: false
             })
         })
-        dispatch(editASpot(spot))
+        dispatch(editASpot(spot));
         return spot;
     }
 }
@@ -175,7 +175,6 @@ export default function spotsReducer(state = {}, action) {
             newState['userSpots'] = userSpotsObj;
             return newState;
         case DELETE_A_SPOT:
-            // console.log('In the reducer.')
             newState = {...state, userSpots: {...state.userSpots}};
             delete newState.userSpots[action.spotId];
             return newState;

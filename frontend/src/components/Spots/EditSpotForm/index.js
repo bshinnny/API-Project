@@ -161,7 +161,7 @@ function EditSpotForm() {
                         required
                     />
                 </label>
-                <label> Add additional spot images:
+                <label> Add an additional Spot Image:
                     <input
                         type="text"
                         value={url}
