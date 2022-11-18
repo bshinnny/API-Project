@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as spotsActions from '../../../store/spots';
@@ -10,25 +10,42 @@ function EditSpotForm() {
     const history = useHistory();
     const { spotId } = useParams();
 
-    const spots = useSelector(state => state.spots.userSpots);
-    const spot = spots[spotId];
-
-
-    const [address, setAddress] = useState(spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [lat, setLat] = useState(spot.lat);
-    const [lng, setLng] = useState(spot.lng);
-    const [name, setName] = useState(spot.name);
-    const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.price);
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [lat, setLat] = useState('');
+    const [lng, setLng] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState(0);
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const spot = useSelector(state => state.spots.spotDetails);
+
+    useEffect(() => {
+        dispatch(spotsActions.getSpotDetailsThunk(spotId))
+    }, [dispatch, spotId])
+
+    useEffect(() => {
+        if (spot) {
+            setAddress(spot.address);
+            setCity(spot.city);
+            setState(spot.state);
+            setCountry(spot.country);
+            setLat(spot.lat);
+            setLng(spot.lng);
+            setName(spot.name);
+            setDescription(spot.description);
+            setPrice(spot.price);
+            setUrl('');
+            setErrors([]);
+        }
+    }, [spot])
+
     const user = useSelector(state => state.session.user);
     if (!user) return <Redirect to="/" />;
-    if(!spot) return <Redirect to={`/spots/${spotId}/edit`} />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,7 +79,7 @@ function EditSpotForm() {
         };
 
         return dispatch(spotsActions.editASpotThunk(editedSpot, spotId))
-            .then((spot) => {
+            .then(() => {
                 setAddress('')
                 setCity('')
                 setState('')
