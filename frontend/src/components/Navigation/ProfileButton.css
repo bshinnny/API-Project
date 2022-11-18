@@ -18,10 +18,11 @@
     position: absolute;
     right: 0px;
     background-color: white;
+    /* overflow: hidden; */
 }
 
 .profile-dropdown {
-    background-color: white;
+    /* background-color: white; */
     padding: 25px 25px 25px 5px;
     border: 2px solid gray;
     list-style-type: none;
@@ -31,6 +32,9 @@
     align-items: center;
     justify-content: center;
     right: 0px;
+    height: 70px;
+    width: 100px;
+    overflow: hidden;
 }
 
 .profile-dropdown-2 {
@@ -54,4 +58,31 @@
 .user-spots-link {
     text-decoration: none;
     color: black;
+}
+
+.button.logout {
+    margin: 10px 0px 0px 0px;
+}
+
+.user-info-dropdown {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 5px 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.7);
+    width: 100%;
+}
+
+.profile-li:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+    /* width: fit-content; */
+}
+
+.profile-li {
+    width: 100%;
+}
+
+.profile-spots-div {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.7);
+    width: 100%;
 }

@@ -41,21 +41,25 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         <div className="dropdown-menu">
         {showMenu && ( user ?
           (<ul className="profile-dropdown-2">
-            <li>User: {user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <NavLink className='create-spot-link' to={'/spots/new'}>
-                Become a Host!
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className='user-spot-link' to={'/spots/current'}>
-                User Spots!
-              </NavLink>
-            </li>
-            <li>
-              <button className='button clickable' onClick={logout}>Log Out</button>
-            </li>
+              <div className="user-info-dropdown">
+                <li className="profile-li">User: {user.username}</li>
+                <li className="profile-li">{user.email}</li>
+              </div>
+              <div className="profile-spots-div">
+                  <li className="profile-li">
+                  <NavLink className='create-spot-link' to={'/spots/new'}>
+                    Become a Host!
+                  </NavLink>
+                </li>
+                <li className="profile-li">
+                  <NavLink className='user-spot-link' to={'/spots/current'}>
+                    User Spots!
+                  </NavLink>
+                </li>
+              </div>
+              <li>
+                <button className='button clickable logout' onClick={logout}>Log Out</button>
+              </li>
           </ul>) :
           (<ul className="profile-dropdown">
             <li>
