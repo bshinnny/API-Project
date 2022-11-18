@@ -28,3 +28,19 @@
     transform: rotate(-90deg);
     height: 100%
 }
+
+.left-side-header {
+    display: flex;
+    align-items: center;
+}
+
+.create-spot-link.header-create {
+    padding: 10px 5px;
+    margin-right: 15px;
+}
+
+.create-spot-link.header-create:hover {
+    /* border: 1px solid grey; */
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.1);;
+}

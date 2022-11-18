@@ -40,15 +40,20 @@ function Navigation({ isLoaded }){
                             <img className='logo' alt='airbnb-logo' src={AirbnbLogo}></img>
                         </NavLink>
                     </div>
-                    {isLoaded && (
-                        <div className='profile-button-div'>
-                            <ProfileButton
-                                user={sessionUser}
-                                setLogin={setLogin}
-                                setShowModal={setShowModal}
-                                />
-                        </div>
-                    )}
+                    <div className='left-side-header'>
+                        <NavLink className='create-spot-link header-create' to={'/spots/new'}>
+                            Become a Host!
+                        </NavLink>
+                        {isLoaded && (
+                            <div className='profile-button-div'>
+                                <ProfileButton
+                                    user={sessionUser}
+                                    setLogin={setLogin}
+                                    setShowModal={setShowModal}
+                                    />
+                            </div>
+                        )}
+                    </div>
                 </li>
                 {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
