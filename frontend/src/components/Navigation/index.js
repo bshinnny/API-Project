@@ -32,25 +32,31 @@ function Navigation({ isLoaded }){
     // }
 
     return (
-        <ul className='navigation-header'>
-            <li>
-                <NavLink exact to="/">
-                    <img className='logo' alt='airbnb-logo' src={AirbnbLogo}></img>
-                </NavLink>
-                {isLoaded && (
-                    <ProfileButton
-                        user={sessionUser}
-                        setLogin={setLogin}
-                        setShowModal={setShowModal}
-                        />
+        <div className='page-div'>
+            <ul className='navigation-header'>
+                <li className='navigation-li'>
+                    <div className='logo-div'>
+                        <NavLink exact to="/">
+                            <img className='logo' alt='airbnb-logo' src={AirbnbLogo}></img>
+                        </NavLink>
+                    </div>
+                    {isLoaded && (
+                        <div className='profile-button-div'>
+                            <ProfileButton
+                                user={sessionUser}
+                                setLogin={setLogin}
+                                setShowModal={setShowModal}
+                                />
+                        </div>
+                    )}
+                </li>
+                {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    {login ? <LoginForm setShowModal={setShowModal}/> : <SignupForm setShowModal={setShowModal}/>}
+                </Modal>
                 )}
-            </li>
-            {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
-                {login ? <LoginForm setShowModal={setShowModal}/> : <SignupForm setShowModal={setShowModal}/>}
-            </Modal>
-            )}
-        </ul>
+            </ul>
+        </div>
     );
 }
 

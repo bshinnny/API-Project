@@ -7,5 +7,23 @@
 }
 
 .fa-solid {
-    padding: 10px 5px;
+    padding: 3px 5px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0px;
+    background-color: white;
+}
+
+.profile-dropdown {
+    background-color: white;
+    padding: 10px;
+    border: 2px solid gray;
+    list-style-type: none;
+    border-radius: 10px;
 }

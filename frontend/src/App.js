@@ -17,8 +17,10 @@ function App() {
   useEffect(() => {
     // Added dispatch to fetch all & user spots.
     // dispatch(spotsActions.getAllSpotsThunk())
-    dispatch(spotsActions.getUserSpotsThunk()).then(() => dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true)))
-    // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
+    // dispatch(spotsActions.getUserSpotsThunk()).then(() => dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true)))
+    dispatch(spotsActions.getUserSpotsThunk())
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return isLoaded && (

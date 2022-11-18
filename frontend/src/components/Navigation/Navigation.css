@@ -1,3 +1,30 @@
+.page-div {
+    margin: 0;
+}
+
+.navigation-header {
+    height: 50px;
+    padding: 0 50px;
+    margin: 0;
+    border-bottom: 1px solid grey;
+    display: flex;
+    list-style-type: none;
+}
+
+.navigation-li {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    /* border: 1px solid salmon; */
+}
+
+.logo-div {
+    height: 90%;
+    /* border: 1px solid blue; */
+}
+
 .logo {
     transform: rotate(-90deg);
+    height: 100%
 }
