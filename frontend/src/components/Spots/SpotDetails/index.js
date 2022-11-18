@@ -30,11 +30,11 @@ function SpotDetails() {
             <h1 className='spot-name'>{spot.name}</h1>
             <div className='spot-details-header'>
                 <p className='avg-rating'>
-                    <i className="fa-solid fa-star"></i>{parseInt(spot.numReviews) === 0 ? `New`:`${spot.avgStarRating}`}
+                    <i className="fa-solid fa-star"></i>{Number(spot.numReviews) < 1 ? `New`:`${Number(spot.avgStarRating)}`}
                 </p>
                 <p className='divider'>·</p>
                 <p className='review-header-info'>
-                    {spot.numReviews === 0 || spot.numReviews > 1 ?`${spot.numReviews} reviews` : `${spot.numReviews} review`}
+                    {Number(spot.numReviews) === 0 || Number(spot.numReviews) > 1 ?`${Number(spot.numReviews)} reviews` : `${Number(spot.numReviews)} review`}
                 </p>
                 <p className='divider'>·</p>
                 <p>
@@ -109,9 +109,9 @@ function SpotDetails() {
             </div>
             <div className='spot-details-reviews'>
                 <h2 className='reviews-h2'>
-                    <i className="fa-solid fa-star"></i>{spot.numReviews === 0 ? `New`:`${spot.avgStarRating}`}
+                    <i className="fa-solid fa-star"></i>{Number(spot.numReviews) === 0 ? `New`:`${Number(spot.avgStarRating)}`}
                     <p className='divider'>·</p>
-                    {spot.numReviews === 0 || spot.numReviews > 1 ?`${spot.numReviews} reviews!` : `${spot.numReviews} review!`}
+                    {Number(spot.numReviews) === 0 || Number(spot.numReviews) > 1 ?`${Number(spot.numReviews)} reviews!` : `${Number(spot.numReviews)} review!`}
                 </h2>
             </div>
             <div className='reviews-container'>
