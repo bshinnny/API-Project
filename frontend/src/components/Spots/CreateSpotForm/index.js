@@ -33,6 +33,8 @@ function CreateSpotForm() {
         if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
         if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
         if (price <= 0) errors.push('Price cannot be $0 or less.');
+        if (description.length > 255) errors.push('Description must be less than 255 characters.');
+        if (url.length > 255) errors.push('URL must be less than 255 characters.');
 
         setErrors(errors);
 

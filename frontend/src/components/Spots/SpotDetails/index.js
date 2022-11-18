@@ -87,7 +87,7 @@ function SpotDetails() {
                         </div>
                     </div>
                     <div className='profile-pic'>
-                        <i class="fa-solid fa-address-card fa-2x"></i>
+                        <i className="fa-solid fa-address-card fa-2x"></i>
                     </div>
                 </div>
                 <ul className='check-in'>
