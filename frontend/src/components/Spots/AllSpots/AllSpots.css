@@ -54,3 +54,11 @@
 .spot-rating {
     font-size: 15px;
 }
+
+.spot-name-price {
+    padding: 5px 0px
+}
+
+.spot-name-grey {
+    color: rgba(128, 128, 128, 0.7);
+}

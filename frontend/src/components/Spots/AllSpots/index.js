@@ -28,8 +28,8 @@ function AllSpots() {
                                     <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
                                     <h3 className='spot-rating'>{spot.avgRating ? `★ ${spot.avgRating}`:`★ New`}</h3>
                                 </div>
-                                <div className='spot-description'>{spot.description}</div>
-                                <div>${spot.price} a night.</div>
+                                <div className='spot-name-price spot-name-grey'>{spot.name}</div>
+                                <div className='spot-name-price'>${spot.price} a night.</div>
                             </div>
                         </NavLink>
                     )
