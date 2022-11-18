@@ -22,9 +22,9 @@ function SpotReview({ review }) {
     return (
         <div className='spot-review-card'>
             <div>
-                <p className="review-user-name">{review.User.firstName}</p>
-                <p className="review-create-date">{`${month} ${year}`}</p>
-                <p className="user-review">{review.review}</p>
+                <div className="review-user-name">{review.User.firstName}</div>
+                <div className="review-create-date">{`${month} ${year}`}</div>
+                <div className="user-review">{review.review}</div>
             </div>
             <div>
                 {user && review.User.id === user.id && (

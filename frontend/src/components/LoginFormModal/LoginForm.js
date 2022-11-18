@@ -36,35 +36,41 @@ function LoginForm({ setShowModal }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
-      <div className="demo-user button">
-        <button onClick={handleDemo} className="submit-button">Demo User Login</button>
-      </div>
-    </form>
+    <div className="form-div">
+      <form className='form' onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <label className="label">
+          <input
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+            placeholder="Username or Email"
+            className="input"
+          />
+        </label>
+        <label className="label">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Password"
+            className="input"
+          />
+        </label>
+        <div className="button-div">
+          <button className='button' type="submit">Log In</button>
+        </div>
+        <div className="button-div">
+          <button className='button'onClick={handleDemo}>Demo User Login</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

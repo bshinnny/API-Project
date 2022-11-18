@@ -45,7 +45,7 @@ router.post(
         // console.log(emailExists)
         if (emailExists) {
           const err = Error("User already exists");
-          err.errors = { email: "User with that email already exists" };
+          err.errors = ["User with that email already exists"];
           err.status = 403;
           return next(err);
         }
@@ -53,7 +53,7 @@ router.post(
         const usernameExists = await User.findOne({ where: { username } });
         if (usernameExists) {
           const err = Error("User already exists");
-          err.errors = { username: "User with that username already exists" };
+          err.errors = ["User with that username already exists"];
           err.status = 403;
           return next(err);
         }

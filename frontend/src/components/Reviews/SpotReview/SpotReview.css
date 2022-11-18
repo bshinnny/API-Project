@@ -1,0 +1,17 @@
+.spot-review-card {
+    display: flex;
+    width: 50%;
+}
+
+.review-user-name {
+    font-weight: bold;
+}
+
+.review-create-date {
+    font-weight: light;
+    color: grey;
+}
+
+.user-review {
+
+}

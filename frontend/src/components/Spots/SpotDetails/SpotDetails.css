@@ -1,6 +1,6 @@
 .spot-details-div {
     margin: 0px 50px;
-    border: 1px solid salmon;
+    /* border: 1px solid salmon; */
     justify-content: center;
 }
 
@@ -240,4 +240,29 @@
     align-items: center;
     margin: 0px 0px 0px 0px;
     /* border: 1px solid salmon; */
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.create-review-div {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link.create-review {
+    text-decoration: none;
+    color: white;
+    background-color: #ff385c;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 10px;
 }

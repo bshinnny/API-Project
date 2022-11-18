@@ -19,7 +19,7 @@ function App() {
     // dispatch(spotsActions.getAllSpotsThunk())
     // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
     // dispatch(spotsActions.getUserSpotsThunk()).then(() => dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true)))
-    dispatch(spotsActions.getUserSpotsThunk())
+    // dispatch(spotsActions.getUserSpotsThunk())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 

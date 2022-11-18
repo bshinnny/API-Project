@@ -13,6 +13,7 @@ function SpotDetails() {
 
     const spot = useSelector(state => state.spots.spotDetails);
     const reviews = useSelector(state => state.reviews.spotReviews);
+    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(spotsActions.getSpotDetailsThunk(spotId))
@@ -29,7 +30,7 @@ function SpotDetails() {
             <h1 className='spot-name'>{spot.name}</h1>
             <div className='spot-details-header'>
                 <p className='avg-rating'>
-                    <i className="fa-solid fa-star"></i>{`${spot.avgStarRating}`}
+                    <i className="fa-solid fa-star"></i>{spot.numReviews === 0 ? `0`:`${spot.avgStarRating}`}
                 </p>
                 <p className='divider'>·</p>
                 <p className='review-header-info'>
@@ -108,17 +109,21 @@ function SpotDetails() {
             </div>
             <div className='spot-details-reviews'>
                 <h2 className='reviews-h2'>
-                    <i className="fa-solid fa-star"></i>{`${spot.avgStarRating}`}
+                    <i className="fa-solid fa-star"></i>{spot.numReviews === 0 ? `0`:`${spot.avgStarRating}`}
                     <p className='divider'>·</p>
-                    {spot.numReviews === 0 || spot.numReviews > 1 ? `${spot.numReviews} reviews` : `No reviews yet.`}
+                    {spot.numReviews === 0 || spot.numReviews > 1 ?`${spot.numReviews} reviews!` : `${spot.numReviews} review!`}
                 </h2>
             </div>
+            <div className='reviews-container'>
                 {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (
                     <SpotReview key={`review-${review.id}`} review={review} />
                 )) :
-                <h2 className='reviews-h2'>Spot doesn't have any reviews.</h2>
+                <h2 className='reviews-h2'>Spot doesn't have any reviews. Be the first below!</h2>
                 }
-            <NavLink to={`/spots/${spotId}/reviews/new`}>Create A Review</NavLink>
+            </div>
+            <div className='create-review-div'>
+                {user && spot.Owner.id !== user.id && (<NavLink className='nav-link create-review' to={`/spots/${spotId}/reviews/new`}>Create A Review</NavLink>)}
+            </div>
         </div>
     )
 }
