@@ -30,7 +30,7 @@ function SpotDetails() {
             <h1 className='spot-name'>{spot.name}</h1>
             <div className='spot-details-header'>
                 <p className='avg-rating'>
-                    <i className="fa-solid fa-star"></i>{spot.numReviews === 0 ? `New`:`${spot.avgStarRating}`}
+                    <i className="fa-solid fa-star"></i>{parseInt(spot.numReviews) === 0 ? `New`:`${spot.avgStarRating}`}
                 </p>
                 <p className='divider'>·</p>
                 <p className='review-header-info'>
