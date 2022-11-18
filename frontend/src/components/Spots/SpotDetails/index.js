@@ -38,7 +38,7 @@ function SpotDetails() {
                 </p>
                 <p className='divider'>·</p>
                 <p>
-                <i class="fa-solid fa-medal"></i> Superhost
+                <i className="fa-solid fa-medal"></i> Superhost
                 </p>
                 <p className='divider'>·</p>
                 <p className='review-header-info'>
