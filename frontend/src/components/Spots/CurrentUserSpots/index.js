@@ -23,7 +23,8 @@ function CurrentUserSpots() {
     if (!spots) return <h1>User has no spots.</h1>;
 
     return (
-        <div>
+        <div className='user-spots-div'>
+            <h2>User Spots</h2>
             <div className='all-spots user-spots'>
             {Object.values(spots).map((spot) => {
                     return (

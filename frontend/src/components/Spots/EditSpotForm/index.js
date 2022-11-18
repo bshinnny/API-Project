@@ -76,103 +76,113 @@ function EditSpotForm() {
       };
 
     return (
-        <div>
-            <h1>Edit Your Spot</h1>
-            <form onSubmit={handleSubmit}>
+        <div className='form-div'>
+            <form className='create-spot form' onSubmit={handleSubmit}>
+                <h1>Edit Your Spot</h1>
                 <ul className="errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <label>Address:
+                <label>
                     <input
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder='Address'
                         required
+                        className="input"
                     />
                 </label>
-                <label> City:
+                <label>
                     <input
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         placeholder='City'
                         required
+                        className="input"
                     />
                 </label>
-                <label> State:
+                <label>
                     <input
                         type="text"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                         placeholder='State'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Country:
+                <label>
                     <input
                         type="text"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
                         placeholder='Country'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Latitude:
+                <label>
                     <input
                         type="number"
                         value={lat}
                         onChange={(e) => setLat(e.target.value)}
                         placeholder='Latitude'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Longitude:
+                <label>
                     <input
                         type="number"
                         value={lng}
                         onChange={(e) => setLng(e.target.value)}
                         placeholder='Longitude'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Name:
+                <label>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder='Name'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Description:
+                <label>
                     <input
                         type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder='Description'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Price ($):
+                <label>
                     <input
                         type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         placeholder='Price'
                         required
+                        className="input"
                     />
                 </label>
-                <label> Add an additional Spot Image:
+                <label>
                     <input
                         type="text"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        placeholder='Preview Image URL'
+                        placeholder='Spot Image URL'
                         required
+                        className="input"
                     />
                 </label>
-                <button type="submit">Submit Edit</button>
+                <button className='submit-button'type="submit">Submit Edit</button>
             </form>
         </div>
     )

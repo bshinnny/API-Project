@@ -31,8 +31,8 @@ function CurrentUserSpot({ spot }) {
                     <p>${spot.price} a night.</p>
                 </div>
             </NavLink>
-            <button onClick={dispatchDelete}>Delete <i className="fa-solid fa-trash"></i></button>
-            <button onClick={handleClick}>Edit <i className="fa-solid fa-pen-to-square"></i></button>
+            <button className='button' onClick={dispatchDelete}>Delete <i className="fa-solid fa-trash"></i></button>
+            <button className='button' onClick={handleClick}>Edit <i className="fa-solid fa-pen-to-square"></i></button>
         </div>
 
     )

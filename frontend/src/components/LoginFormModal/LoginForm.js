@@ -38,6 +38,7 @@ function LoginForm({ setShowModal }) {
   return (
     <div className="form-div">
       <form className='form' onSubmit={handleSubmit}>
+        <h2>Log in to your account.</h2>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
