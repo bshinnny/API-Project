@@ -1,0 +1,20 @@
+.review-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.input.stars {
+    width: 100%;
+}
+
+.label.stars {
+    width: 300px;
+}
+
+.label.review {
+    width: 300px;
+}
+
+.input.review {
+    height: 200px;
+}

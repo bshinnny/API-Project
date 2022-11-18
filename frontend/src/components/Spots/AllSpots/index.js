@@ -24,8 +24,10 @@ function AllSpots() {
                         <NavLink className='spot-link' to={`/spots/${spot.id}`} key={spot.id}>
                             <div className='spot'>
                                 <img src={spot.previewImage} alt={spot.name} className='spot-image'></img>
-                                <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
-                                <div className='spot-rating'>Average Rating: {spot.avgRating} ★</div>
+                                <div className='title-rating'>
+                                    <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
+                                    <h3 className='spot-rating'>{spot.avgRating ? `★ ${spot.avgRating}`:`★ New`}</h3>
+                                </div>
                                 <div className='spot-description'>{spot.description}</div>
                                 <div>${spot.price} a night.</div>
                             </div>

@@ -13,7 +13,7 @@ function CreateSpotReviewForm() {
 
     useEffect(() => {
         dispatch(getSpotDetailsThunk(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
@@ -27,6 +27,7 @@ function CreateSpotReviewForm() {
         e.preventDefault();
 
         if (review.length > 255) setErrors('Review must be less than 255 characters.');
+        if (stars < 1 || stars > 5) setErrors('Stars must be an integer from 1-5.')
 
         if(errors.length){
             return;
@@ -49,38 +50,43 @@ function CreateSpotReviewForm() {
                     if (data && data.message) {
                         setErrors(data.message);
                     }
+                    if (data && data.errors) {
+                        setErrors(data.errors);
+                    }
                 }
             )
     };
 
 
     return (
-        <div>
-            <h1>Create A Review</h1>
-            <form onSubmit={handleSubmit}>
+        <div className='review-div'>
+            <form className='create-review form' onSubmit={handleSubmit}>
+                <h1>Create A Review</h1>
                 <ul className="errors">
-                    <li key={errors}>{errors}</li>
+                    {errors && <li className='create-review-form-errors' key={errors}>{errors}</li>}
                 </ul>
-                <label>
+                <label className='label review'>
                     <textarea
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
                         placeholder='Review'
                         required
+                        className='input review'
                     />
                 </label>
-                <label>
+                <label className='label stars'>
                     <input
                         type="number"
                         value={stars}
-                        min={0}
+                        min={1}
                         max={5}
                         onChange={(e) => setStars(e.target.value)}
                         placeholder='Stars'
                         required
+                        className='input stars'
                     />
                 </label>
-                <button type="submit">Submit Review</button>
+                <button className='submit-button' type="submit">Submit Review</button>
             </form>
         </div>
     )

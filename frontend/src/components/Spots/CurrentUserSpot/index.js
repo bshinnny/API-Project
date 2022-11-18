@@ -25,8 +25,10 @@ function CurrentUserSpot({ spot }) {
             <NavLink className='spot-link' to={`/spots/${spot.id}`} key={spot.id}>
                 <div className='spot'>
                     <img src={spot.previewImage} alt={spot.name} className='spot-image'></img>
-                    <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
-                    <p className='spot-rating'>Average Rating: {spot.avgRating} ★</p>
+                    <div className='title-rating'>
+                        <h3 key={spot.id} className='spot-title'>{spot.city}, {spot.state}</h3>
+                        <h3 className='spot-rating'>{spot.avgRating ? `★ ${spot.avgRating}`:`★ New`}</h3>
+                    </div>
                     <p className='spot-description'>{spot.description}</p>
                     <p>${spot.price} a night.</p>
                 </div>
