@@ -167,7 +167,7 @@ function CreateSpotForm() {
                 </label>
                 <label>
                     <input
-                        type="text"
+                        type="url"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder='Preview Image URL'
@@ -175,7 +175,7 @@ function CreateSpotForm() {
                         className="input"
                     />
                 </label>
-                <button className='submit-button' type="submit">Submit Spot</button>
+                <button className='submit-button clickable' type="submit">Submit Spot</button>
             </form>
         </div>
     )

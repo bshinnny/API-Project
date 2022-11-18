@@ -69,7 +69,7 @@ function CreateSpotReviewForm() {
                     <textarea
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
-                        placeholder='Review'
+                        placeholder='Share your thoughts on this spot!'
                         required
                         className='input review'
                     />
@@ -86,7 +86,7 @@ function CreateSpotReviewForm() {
                         className='input stars'
                     />
                 </label>
-                <button className='submit-button' type="submit">Submit Review</button>
+                <button className='submit-button clickable' type="submit">Submit Review</button>
             </form>
         </div>
     )

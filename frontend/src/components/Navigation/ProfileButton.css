@@ -45,3 +45,13 @@
     justify-content: center;
     right: 0px;
 }
+
+.create-spot-link {
+    text-decoration: none;
+    color: black;
+}
+
+.user-spots-link {
+    text-decoration: none;
+    color: black;
+}

@@ -33,7 +33,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
   return (
     <>
     <div className="dropdown">
-        <button className='profile-button' onClick={openMenu}>
+        <button className='profile-button clickable' onClick={openMenu}>
           {/* <i className="fas fa-user-circle" /> */}
           <i className="fa-solid fa-bars fa-2x"></i>
           <i className="fa-solid fa-circle-user fa-2x"></i>
@@ -41,7 +41,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         <div className="dropdown-menu">
         {showMenu && ( user ?
           (<ul className="profile-dropdown-2">
-            <li>{user.username}</li>
+            <li>User: {user.username}</li>
             <li>{user.email}</li>
             <li>
               <NavLink className='create-spot-link' to={'/spots/new'}>
@@ -49,23 +49,23 @@ function ProfileButton({ user, setLogin, setShowModal }) {
               </NavLink>
             </li>
             <li>
-              <NavLink className='user-spots' to={'/spots/current'}>
+              <NavLink className='user-spot-link' to={'/spots/current'}>
                 User Spots!
               </NavLink>
             </li>
             <li>
-              <button className='button' onClick={logout}>Log Out</button>
+              <button className='button clickable' onClick={logout}>Log Out</button>
             </li>
           </ul>) :
           (<ul className="profile-dropdown">
             <li>
-              <button className='button dropdown' onClick={() => {
+              <button className='button dropdown clickable' onClick={() => {
                 setLogin(true)
                 setShowModal(true)
               }}>Log In</button>
             </li>
             <li>
-              <button className='button dropdown' onClick={() => {
+              <button className='button dropdown clickable' onClick={() => {
                 setLogin(false)
                 setShowModal(true)
               }}>Sign Up</button>

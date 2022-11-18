@@ -65,10 +65,10 @@ function LoginForm({ setShowModal }) {
           />
         </label>
         <div className="button-div">
-          <button className='button' type="submit">Log In</button>
+          <button className='button clickable' type="submit">Log In</button>
         </div>
         <div className="button-div">
-          <button className='button'onClick={handleDemo}>Demo User Login</button>
+          <button className='button clickable'onClick={handleDemo}>Demo User Login</button>
         </div>
       </form>
     </div>

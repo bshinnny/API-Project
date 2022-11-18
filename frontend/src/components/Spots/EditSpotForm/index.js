@@ -174,7 +174,7 @@ function EditSpotForm() {
                 </label>
                 <label>
                     <input
-                        type="text"
+                        type="url"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder='Spot Image URL'
@@ -182,7 +182,7 @@ function EditSpotForm() {
                         className="input"
                     />
                 </label>
-                <button className='submit-button'type="submit">Submit Edit</button>
+                <button className='submit-button clickable'type="submit">Submit Edit</button>
             </form>
         </div>
     )

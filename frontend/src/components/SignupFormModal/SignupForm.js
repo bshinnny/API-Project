@@ -100,7 +100,7 @@ function SignupForm({ setShowModal }) {
           />
         </label>
         <div className="button-div">
-          <button className='button' type="submit">Sign Up</button>
+          <button className='button clickable' type="submit">Sign Up</button>
         </div>
       </form>
     </div>
