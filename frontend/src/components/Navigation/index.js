@@ -41,9 +41,9 @@ function Navigation({ isLoaded }){
                         </NavLink>
                     </div>
                     <div className='left-side-header'>
-                        <NavLink className='create-spot-link header-create' to={'/spots/new'}>
+                        {sessionUser && (<NavLink className='create-spot-link header-create' to={'/spots/new'}>
                             Become a Host!
-                        </NavLink>
+                        </NavLink>)}
                         {isLoaded && (
                             <div className='profile-button-div'>
                                 <ProfileButton
