@@ -66,7 +66,7 @@ function CreateSpotForm() {
                 setUrl('')
                 history.push(`/spots/${spot.id}`);
             })
-      };
+    };
 
     return (
         <div>

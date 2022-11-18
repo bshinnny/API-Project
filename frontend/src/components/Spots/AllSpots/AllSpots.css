@@ -1,41 +1,45 @@
+.spots-div {
+    display: flex;
+    width: 90vw;
+    border: 3px solid;
+    align-items: center;
+    /* justify-content: space-around; */
+    margin: 50px;
+}
+
 .all-spots {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    width: 100%;
+    /* border: 2px solid hotpink; */
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .spot-link {
     text-decoration: none;
     color: black;
+    /* border: 2px solid green; */
 }
 
 .spot {
-    /* display: grid; */
-    width: 270px;
-    padding: 10px;
-    margin: 10px;
-    grid-template-areas:
-    "image"
-    "rating"
-    "title",
-    "price",
+    width: 200px;
 }
 
 .spot-image {
-    height: 250px;
-    width: 250px;
+    height: 190px;
+    width: 190px;
     border-radius: 15px;
-    grid-area: "image";
 }
 
 .spot-rating {
-    grid-area: "rating";
+
 }
 
 .spot-title {
-    grid-area: "title";
+
 }
 
 .spot-description {
-    grid-area: "title";
+
 }

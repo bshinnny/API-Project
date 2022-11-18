@@ -116,7 +116,7 @@ function SpotDetails() {
             </div>
             <div className='reviews-container'>
                 {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (
-                    <SpotReview key={`review-${review.id}`} review={review} />
+                    <SpotReview key={`review-${review.id}`} review={review} spot={spot} />
                 )) :
                 <h2 className='reviews-h2'>Spot doesn't have any reviews. Be the first below!</h2>
                 }

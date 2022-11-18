@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as reviewsActions from '../../../store/reviews';
 import { Redirect } from 'react-router-dom';
 import './CreateSpotReviewForm.css';
+import { getSpotDetailsThunk } from '../../../store/spots';
 
 function CreateSpotReviewForm() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { spotId } = useParams();
+
+    useEffect(() => {
+        dispatch(getSpotDetailsThunk(spotId))
+    }, [dispatch])
 
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');

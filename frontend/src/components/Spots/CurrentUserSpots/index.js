@@ -24,13 +24,13 @@ function CurrentUserSpots() {
 
     return (
         <div>
-            <ul className='user-spots'>
+            <div className='all-spots user-spots'>
             {Object.values(spots).map((spot) => {
                     return (
                         <CurrentUserSpot key={`spot-${spot.id}`} spot={ spot } />
                     )
                 })}
-            </ul>
+            </div>
         </div>
     )
 }
