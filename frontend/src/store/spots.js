@@ -73,6 +73,10 @@ export const getSpotDetailsThunk = (spotId) => async dispatch => {
 
 export const createASpotThunk = (spot) => async dispatch => {
     const { url, ...newSpot } = spot;
+    // Latitude and longitude removed from form.
+    newSpot['lat'] = 40.792240;
+    newSpot['lng'] = -118.2436849;
+    // console.log(newSpot);
 
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
@@ -124,6 +128,9 @@ export const deleteASpotThunk = (spotId) => async dispatch => {
 
 export const editASpotThunk = (spot, spotId) => async dispatch => {
     const { url, ...editedSpot } = spot;
+    // Latitude and longitude removed from form.
+    editedSpot['lat'] = 40.792240;
+    editedSpot['lng'] = -118.2436849;
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         body: JSON.stringify(editedSpot)

@@ -13,7 +13,9 @@ const validateSpot = [
     check('address')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .withMessage('Street address is required'),
+        .withMessage('Street address is required')
+        .isLength({ max: 70 })
+        .withMessage('Address must be less than 70 characters.'),
     check('city')
         .exists({ checkFalsy: true })
         .notEmpty()
@@ -182,6 +184,12 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res, nex
     const { review, stars } = req.body;
     const { spotId } = req.params;
     const { user } = req;
+
+    if(review.length > 255) {
+        const err = new Error(`Review must be less than 255 characters.`);
+        err.status = 403;
+        return next(err);
+    }
 
     const spot = await Spot.findByPk(spotId)
     if (!spot) {

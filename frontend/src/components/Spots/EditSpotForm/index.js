@@ -14,8 +14,9 @@ function EditSpotForm() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
+    // Latitude and longitude removed from form.
+    // const [lat, setLat] = useState('');
+    // const [lng, setLng] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
@@ -34,8 +35,8 @@ function EditSpotForm() {
             setCity(spot.city);
             setState(spot.state);
             setCountry(spot.country);
-            setLat(spot.lat);
-            setLng(spot.lng);
+            // setLat(spot.lat);
+            // setLng(spot.lng);
             setName(spot.name);
             setDescription(spot.description);
             setPrice(spot.price);
@@ -53,8 +54,9 @@ function EditSpotForm() {
         const errors = [];
 
         if (name.length > 49) errors.push('Name must be less than 50 characters.');
-        if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
-        if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
+        if (address.length > 69) errors.push('Address must be less than 70 characters.');
+        // if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
+        // if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
         if (price <= 0) errors.push('Price cannot be $0 or less.');
         if (description.length > 255) errors.push('Description must be less than 255 characters.');
         if (url.length > 255) errors.push('URL must be less than 255 characters.');
@@ -70,8 +72,8 @@ function EditSpotForm() {
             city,
             state,
             country,
-            lat,
-            lng,
+            // lat,
+            // lng,
             name,
             description,
             price,
@@ -84,8 +86,8 @@ function EditSpotForm() {
                 setCity('')
                 setState('')
                 setCountry('')
-                setLat('')
-                setLng('')
+                // setLat('')
+                // setLng('')
                 setName('')
                 setDescription('')
                 setPrice('')
@@ -141,7 +143,7 @@ function EditSpotForm() {
                         className="input"
                     />
                 </label>
-                <label>
+                {/* <label>
                     <input
                         type="number"
                         value={lat}
@@ -160,7 +162,7 @@ function EditSpotForm() {
                         required
                         className="input"
                     />
-                </label>
+                </label> */}
                 <label>
                     <input
                         type="text"
