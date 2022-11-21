@@ -49,17 +49,76 @@ module.exports = {
         lat: 41.792240,
         lng: -119.2436849,
         name: 'Santa Monica Beach Getaway',
-        description: 'Beautiful beachfront property near Santa Monica.',
+        description: 'Property near Santa Monica.',
         price: 25000.99
       },
-
+      {
+        ownerId: 1,
+        address: '11111 Stone Bridge Drive',
+        city: 'Los Angeles',
+        state: 'California',
+        country: 'United States',
+        lat: 40.792240,
+        lng: -118.2436849,
+        name: 'Los Angeles Mansion',
+        description: 'Mansion in DTLA.',
+        price: 150.00
+      },
+      {
+        ownerId: 1,
+        address: '11111 Stone Bridge Way',
+        city: 'Boston',
+        state: 'Massachusetts',
+        country: 'United States',
+        lat: 40.792240,
+        lng: -118.2436849,
+        name: 'Historic Boston House',
+        description: 'Historic Boston home.',
+        price: 100.00
+      },
+      {
+        ownerId: 3,
+        address: '12023 River Drive',
+        city: 'Big Bear',
+        state: 'California',
+        country: 'United States',
+        lat: 41.792240,
+        lng: -119.2436849,
+        name: 'Big Bear Getaway',
+        description: 'Property near the mountains of CA.',
+        price: 1000
+      },
+      {
+        ownerId: 3,
+        address: '12023 River Way',
+        city: 'Northridge',
+        state: 'California',
+        country: 'United States',
+        lat: 41.792240,
+        lng: -119.2436849,
+        name: 'SoCal Mansion',
+        description: 'Property near Santa Monica.',
+        price: 550
+      },
+      {
+        ownerId: 1,
+        address: '22222 Stone Bridge Drive',
+        city: 'Los Angeles',
+        state: 'California',
+        country: 'United States',
+        lat: 40.792240,
+        lng: -118.2436849,
+        name: 'Los Angeles Villa',
+        description: 'Villa in DTLA.',
+        price: 350
+      },
     ], {});
   },
 
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('Spots', {
-      name: { [Op.in]: ['Hollywood House', 'New York Apartment', 'Upper East Side Apartment', 'LA Suburb House'] }
+      name: { [Op.in]: ['Malibu Beach House', 'New York Apartment', 'Upper East Side Apartment', 'Santa Monica Beach Getaway', 'Los Angeles Mansion', 'Historic Boston House', 'Big Bear Getaway', 'SoCal Mansion', 'Los Angeles Villa'] }
     }, {});
   }
 };
