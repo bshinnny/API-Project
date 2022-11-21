@@ -68,6 +68,31 @@ module.exports = {
         spotId: 4,
         url: 'https://a0.muscache.com/im/pictures/a26391b3-b8ac-4a27-a485-2c52ae95fc4f.jpg?im_w=720',
         preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-761752880747227749/original/b13caba8-ca16-418e-bd98-5b8e5e871234.jpeg?im_w=720',
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-52740721/original/348c6c6c-3873-4d23-a87e-2dcf67a077a2.jpeg?im_w=720',
+        preview: true
+      },
+      {
+        spotId: 7,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-2224026/original/56e06a6c-f88b-4726-b75b-aaf27425b2ce.jpeg?im_w=720',
+        preview: true
+      },
+      {
+        spotId: 8,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-615424299798225044/original/e6135e23-4ec6-4b1f-8e97-62ee69725512.jpeg?im_w=720',
+        preview: true
+      },
+      {
+        spotId: 9,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-751578714767345246/original/67eb483f-5acc-4a14-84bb-875f2053062f.png?im_w=720',
+        preview: true
       }
     ], {});
   },
@@ -75,7 +100,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('SpotImages', {
-      spotId: { [Op.in]: [1, 2, 3, 4] }
+      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9] }
     }, {});
   }
 };
