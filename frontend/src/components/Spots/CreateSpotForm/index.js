@@ -33,6 +33,9 @@ function CreateSpotForm() {
         if (address.length > 69) errors.push('Address must be less than 70 characters.');
         // if (lat < -90 || lat > 90) errors.push('Latitude must be between -90 and 90 degrees.');
         // if (lng < -180 || lng > 180) errors.push('Longitude must be between -180 and 180 degrees.');
+        if (city.length > 49) errors.push('City must be less than 50 characters.');
+        if (state.length > 49) errors.push('State must be less than 50 characters.');
+        if (country.length > 49) errors.push('Country must be less than 50 characters.');
         if (price <= 0) errors.push('Price cannot be $0 or less.');
         if (description.length > 255) errors.push('Description must be less than 255 characters.');
         if (url.length > 255) errors.push('URL must be less than 255 characters.');

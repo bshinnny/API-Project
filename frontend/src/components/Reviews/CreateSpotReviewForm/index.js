@@ -26,12 +26,11 @@ function CreateSpotReviewForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (review.length > 255) setErrors('Review must be less than 255 characters.');
-        if (stars < 1 || stars > 5) setErrors('Stars must be an integer from 1-5.')
-
-        if(errors.length){
+        if (review.length > 255) {
+            setErrors('Review must be less than 255 characters.');
             return;
         }
+        // if (stars < 1 || stars > 5) setErrors('Stars must be an integer from 1-5.')
 
         const newReview = {
             review,

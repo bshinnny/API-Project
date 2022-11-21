@@ -185,11 +185,11 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async(req, res, nex
     const { spotId } = req.params;
     const { user } = req;
 
-    if(review.length > 255) {
-        const err = new Error(`Review must be less than 255 characters.`);
-        err.status = 403;
-        return next(err);
-    }
+    // if(review.length > 255) {
+    //     const err = new Error(`Review must be less than 255 characters.`);
+    //     err.status = 403;
+    //     return next(err);
+    // }
 
     const spot = await Spot.findByPk(spotId)
     if (!spot) {

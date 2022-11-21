@@ -25,7 +25,9 @@ function SpotReview({ review, spot }) {
             <div>
                 <div className="review-user-name">{review.User.firstName}</div>
                 <div className="review-create-date">{`${month} ${year}`}</div>
-                <div className="user-review">{review.review}</div>
+                <div className='user-review-cont'>
+                    <div className="user-review">{review.review}</div>
+                </div>
             </div>
                 {user && review.User.id === user.id && (
                     <button className='review-button' onClick={dispatchDelete}>Delete <i className="fa-solid fa-trash"></i></button>
