@@ -241,6 +241,31 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.json({ Spots: currentUserSpots });
 });
 
+router.get('/search/:searchTerm', async (req, res, next) => {
+    const { searchTerm } = req.params;
+
+    const searchSpots = await Spot.findAll({
+        where: {
+            name: {
+                [Op.like]: `%${searchTerm}%`
+            }
+        },
+        include: [
+            { model: Review, attributes: [] },
+            { model: SpotImage, where: { preview: true }, attributes: [], required: false }
+        ],
+        attributes: {
+            include: [
+                [Sequelize.fn('ROUND', Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 1), 'avgRating'],
+                [Sequelize.col('SpotImages.url'), 'previewImage']
+            ]
+        },
+        group: ['Spot.id', 'previewImage'],
+    });
+
+    return res.json({ Spots: searchSpots });
+})
+
 // GET details for a Spot from an ID
 router.get('/:spotId', async (req, res, next) => {
     // Eager loading!
