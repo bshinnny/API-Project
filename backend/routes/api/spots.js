@@ -246,9 +246,23 @@ router.get('/search/:searchTerm', async (req, res, next) => {
 
     const searchSpots = await Spot.findAll({
         where: {
-            name: {
-                [Op.like]: `%${searchTerm}%`
-            }
+            [Op.or]: [
+                {name: {
+                    [Op.like]: `%${searchTerm}%`
+                }},
+                {address: {
+                    [Op.like]: `%${searchTerm}%`
+                }},
+                {city: {
+                    [Op.like]: `%${searchTerm}%`
+                }},
+                {state: {
+                    [Op.like]: `%${searchTerm}%`
+                }},
+                {description: {
+                    [Op.like]: `%${searchTerm}%`
+                }},
+            ]
         },
         include: [
             { model: Review, attributes: [] },
