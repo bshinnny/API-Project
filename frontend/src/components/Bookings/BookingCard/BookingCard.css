@@ -1,0 +1,36 @@
+.booking-card-cont {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(128, 128, 128, 0.7);
+    margin: 20px;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.booking-spot-image {
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.bc-info-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bc-name {
+    font-weight: bolder;
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+.bc-dates {
+    font-weight: lighter;
+    color:rgba(128, 128, 128, 0.7);
+}
+
+.bc-address-header {
+    font-weight: bold;
+}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as spotsActions from '../../../store/spots';
 import { Redirect } from 'react-router-dom';
-import './SpotForm.css'
+import './SpotForm.css';
 
 function CreateSpotForm() {
     const dispatch = useDispatch();

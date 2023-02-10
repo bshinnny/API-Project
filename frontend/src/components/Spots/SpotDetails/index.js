@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import * as spotsActions from '../../../store/spots';
 import * as reviewsActions from '../../../store/reviews';
 import * as bookingActions from '../../../store/bookings';
@@ -10,7 +10,8 @@ import './SpotDetails.css';
 import { useState } from 'react';
 
 function SpotDetails() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const history = useHistory();
     const { spotId } = useParams();
 
     const spot = useSelector(state => state.spots.spotDetails);
@@ -51,6 +52,7 @@ function SpotDetails() {
                 setCheckIn('')
                 setCheckOut('')
                 setErrors([])
+                history.push('/bookings/current')
             })
     }
 
