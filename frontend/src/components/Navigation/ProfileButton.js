@@ -53,7 +53,12 @@ function ProfileButton({ user, setLogin, setShowModal }) {
                 </li>
                 <li className="profile-li">
                   <NavLink className='user-spot-link' to={'/spots/current'}>
-                    User Spots!
+                    User Spots
+                  </NavLink>
+                </li>
+                <li className="profile-li">
+                  <NavLink className='user-spot-link' to={'/bookings/current'}>
+                    User Bookings
                   </NavLink>
                 </li>
               </div>

@@ -62,6 +62,7 @@
 
 .button.logout {
     margin: 10px 0px 0px 0px;
+    width: 200px;
 }
 
 .user-info-dropdown {
