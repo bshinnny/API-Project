@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import * as reviewsActions from '../../../store/reviews';
 import { getSpotDetailsThunk } from '../../../store/spots';
 import "./SpotReview.css"
 
 function SpotReview({ review, spot }) {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const user = useSelector(state => state.session.user);
 
     const date = new Date(review.createdAt);
