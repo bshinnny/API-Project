@@ -331,7 +331,7 @@
     justify-content: space-between;
     width: fit-content;
     height: 50px;
-    align-items: end;
+    align-items: flex-end;
     /* border: 1px solid red; */
 }
 
