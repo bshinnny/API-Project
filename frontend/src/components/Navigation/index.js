@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 // import LoginFormModal from '../LoginFormModal';
@@ -13,9 +13,12 @@ import AirbnbLogo from "../../images/clipart2562521.png"
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
+    const history = useHistory();
+
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [login, setLogin] = useState(true)
+    const [searchTerm, setSearchTerm] = useState('');
 
     // let sessionLinks;
     // if (sessionUser) {
@@ -31,6 +34,12 @@ function Navigation({ isLoaded }){
     //     );
     // }
 
+    const dispatchSearch = (e) => {
+        e.preventDefault();
+        setSearchTerm('');
+        history.push(`/spots/search/${searchTerm}`);
+    }
+
     return (
         <div className='page-div'>
             <ul className='navigation-header'>
@@ -39,6 +48,17 @@ function Navigation({ isLoaded }){
                         <NavLink exact to="/">
                             <img className='logo' alt='airbnb-logo' src={AirbnbLogo}></img>
                         </NavLink>
+                    </div>
+                    <div className='search-input-div'>
+                        <input
+                            type='text'
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={searchTerm}
+                            placeholder='Search Spots on TheBnb'
+                            required
+                            className='search-input'
+                        />
+                        <button className='search-button clickable' onClick={dispatchSearch}><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                     <div className='left-side-header'>
                         {sessionUser && (<NavLink className='create-spot-link header-create' to={'/spots/new'}>
