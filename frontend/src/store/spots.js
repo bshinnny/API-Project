@@ -6,6 +6,7 @@ const CREATE_A_SPOT = 'spots/CREATE_A_SPOT';
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS';
 const DELETE_A_SPOT = 'spots/DELETE_A_SPOT';
 const EDIT_A_SPOT = 'spots/EDIT_A_SPOT';
+const GET_SEARCH_TERMS = 'products/GET_SEARCH_TERMS';
 
 // ACTIONS
 export const getAllSpots = (spots) => {
@@ -47,6 +48,13 @@ export const editASpot = (spot) => {
     return {
         type: EDIT_A_SPOT,
         spot
+    }
+}
+
+export const getSearchTerms = (spots) => {
+    return {
+        type: GET_SEARCH_TERMS,
+        spots
     }
 }
 
@@ -151,6 +159,16 @@ export const editASpotThunk = (spot, spotId) => async dispatch => {
     }
 }
 
+export const getSearchTermsThunk = (term) => async dispatch => {
+    const response = await fetch(`/api/spots/search/${term}`);
+
+    if (response.ok) {
+        const spots = await response.json();
+        dispatch(getSearchTerms(spots));
+        return response;
+    }
+}
+
 // Format initial data.
 const formatData = (array) => {
     const object = {};
@@ -189,6 +207,12 @@ export default function spotsReducer(state = {}, action) {
             newState = {...state, userSpots: {...state.userSpots}, allSpots: {...state.allSpots}};
             newState.userSpots[action.spot.id] = action.spot;
             newState.allSpots[action.spot.id] = action.spot;
+            return newState;
+        case GET_SEARCH_TERMS:
+            const searchSpotsArr = action.spots.Spots;
+            const searchSpotsObj = formatData(searchSpotsArr);
+            // newState = {...state, searchProducts: searchProductsObj};
+            newState['searchSpots'] = searchSpotsObj;
             return newState;
         default:
             return state;
