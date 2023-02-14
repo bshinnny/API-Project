@@ -58,7 +58,7 @@ function Navigation({ isLoaded }){
                             required
                             className='search-input'
                         />
-                        <button className='search-button clickable' onClick={dispatchSearch}><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button className='search-button clickable' onClick={dispatchSearch}><i className="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                     <div className='left-side-header'>
                         {sessionUser && (<NavLink className='create-spot-link header-create' to={'/spots/new'}>

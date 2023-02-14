@@ -23,6 +23,10 @@ function SpotDetails() {
     const [guests, setGuests] = useState('1')
     const [errors, setErrors] = useState('')
 
+    // console.log('IN',new Date(checkIn));
+    // console.log(new Date(checkOut));
+    // console.log(new Date(checkIn + 1) > new Date(checkOut + 1));
+
     // const testDate = new Date();
     // console.log(checkIn)
 
@@ -38,7 +42,18 @@ function SpotDetails() {
     const handleSubmit = async (e) => {
         // e.preventDefault();
 
-        // const errors = [];
+        const errors = [];
+
+        if (new Date(checkIn + 1) >= new Date(checkOut + 1)) errors.push('Checkout cannot be before check in.');
+        if (user.id === spot.ownerId) errors.push('You cannot book your own spot.')
+
+        // console.log(errors)
+
+        setErrors(errors);
+
+        if(errors.length){
+            return;
+        }
 
         const bookingDates = {
             checkIn,
