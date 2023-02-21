@@ -1,0 +1,31 @@
+.footer-cont {
+    margin: 0;
+}
+
+.footer {
+    height: 50px;
+    padding: 0 50px;
+    margin-top: 30px;
+    border-top: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ls-footer {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.rs-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.about-link {
+    text-decoration: none;
+    color: black;
+}
